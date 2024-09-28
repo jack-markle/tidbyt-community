@@ -56,7 +56,7 @@ def main(config):
     if team_id == 0.0:
         # Choose a random matchup
         matchup_string = "matchup_" + random_matchup(BOX_SCORE_DATA)
-    else: 
+    else:
         matchup_string = "matchup_" + find_matchup(BOX_SCORE_DATA, team_id)
 
     return render.Root(
@@ -214,13 +214,12 @@ def find_matchup(box_data, team_id):
         print("Team ID is out of range, this isn't going to work. Picking a random matchup.")
         return random_matchup(box_data)
 
-    for i in range(1,len(box_data)+1):
-        matchup = box_data["matchup_"+str(i)]
-#        print("%d: HT: %d" % (i, matchup["home_team"]["team_id"]))
-#        print("%d: AT: %d" % (i, matchup["away_team"]["team_id"]))
-       
-        if matchup["home_team"]["team_id"] == team_id or \
-           matchup["away_team"]["team_id"] == team_id:
+    for i in range(1, len(box_data) + 1):
+        matchup = box_data["matchup_" + str(i)]
+        #        print("%d: HT: %d" % (i, matchup["home_team"]["team_id"]))
+        #        print("%d: AT: %d" % (i, matchup["away_team"]["team_id"]))
+
+        if matchup["home_team"]["team_id"] == team_id or matchup["away_team"]["team_id"] == team_id:
             return str(i)
 
     print("Team ID %d not found. Picking a random matchup." % int(team_id))
